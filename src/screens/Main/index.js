@@ -7,7 +7,10 @@ import {
   Form,
   Input,
   Submit,
+  RepoList,
 } from './styles';
+
+import Repository from '../../components/Repository';
 
 const Main = () => {
   return (
@@ -24,6 +27,15 @@ const Main = () => {
           <Icon name="add" size={22} color="#FFF" />
         </Submit>
       </Form>
+
+      <RepoList
+        keyboardShouldPersistTaps="handled"
+        data={[]}
+        keyExtractor={item => String(item.id)}
+        renderItem={({ item }) => (
+          <Repository data={item} />
+        )}
+      />
     </Container>
   );
 };
