@@ -8,9 +8,11 @@ import {
   Stats,
   Stat,
   StatCount,
+  Refresh,
+  RefreshText,
 } from './styles';
 
-const Repository = ({ data }) => {
+const Repository = ({ data, onRefresh }) => {
   return (
     <Container>
       <Name>{data.name}</Name>
@@ -26,6 +28,11 @@ const Repository = ({ data }) => {
           <StatCount>{data.forks}</StatCount>
         </Stat>
       </Stats>
+
+      <Refresh onPress={onRefresh}>
+        <Icon name="refresh" size={16} color="#7159C1" />
+        <RefreshText>ATUALIZAR</RefreshText>
+      </Refresh>
     </Container>
   );
 };
