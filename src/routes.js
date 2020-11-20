@@ -1,16 +1,20 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigation } from 'react-natigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import Main from './screens/Main';
 
-const { Navigator, Screen } = createStackNavigation();
-
 const Routes = () => {
+  const Stack = createStackNavigator();
+
   return (
     <NavigationContainer>
-      <Navigator>
-        <Screen name="Main" component={Main} />
-      </Navigator>
+      <Stack.Navigator 
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Main" component={Main} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

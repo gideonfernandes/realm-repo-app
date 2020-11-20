@@ -1,5 +1,6 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
   Container,
@@ -21,10 +22,10 @@ const Repository = ({ data, onRefresh }) => {
       <Stats>
         <Stat>
           <Icon name="star" size={16} color="#333" />
-          <StatCount>{data.starts}</StatCount>
+          <StatCount>{data.stars}</StatCount>
         </Stat>
         <Stat>
-          <Icon name="code-fork" size={16} color="#333" />
+          <AwesomeIcon name="code-fork" size={16} color="#333" />
           <StatCount>{data.forks}</StatCount>
         </Stat>
       </Stats>

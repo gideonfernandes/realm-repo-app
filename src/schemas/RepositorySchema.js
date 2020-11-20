@@ -1,14 +1,14 @@
-export default class RepositorySxhema {
+export default class RepositorySchema {
   static schema = {
     name: 'Repository',
     primaryKey: 'id',
-    propeties: {
+    properties: {
       id: { type: 'int', indexed: true },
       name: 'string',
       fullName: 'string',
       description: 'string',
       stars: 'int',
-      fork: 'int',
+      forks: 'int',
     },
   };
 };

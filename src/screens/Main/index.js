@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Keyboard } from 'react-native';
-import Icon from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
 import getRealm from '../../services/realm';
 
@@ -22,15 +22,15 @@ const Main = () => {
 
   useEffect(() => {
     async function loadRepositories() {
-      const realm = await getReal();
-      const data = realm.object('Repository').sorted('stars', true);
+      const realm = await getRealm();
+      const data = realm.objects('Repository').sorted('stars', true);
       setRepositories(data);
     };
 
     loadRepositories();
   }, []);
 
-  async function saveRepository(repository) {
+  async function saveRepository(repository, updated = false) {
     const data = {
       id: repository.id,
       name: repository.name,
@@ -46,7 +46,9 @@ const Main = () => {
       realm.create('Repository', data, 'modified');
     });
 
-    return data;
+    if (updated) return data;
+
+    return setRepositories([ ...repositories, data ]);
   };
 
   async function handleAddRepository() {
@@ -65,7 +67,7 @@ const Main = () => {
 
   async function handleRefreshRepository(repository) {
     const response = await api.get(`/repos/${repository.fullName}`);
-    const updatedRepository = await saveRepository(response.data);
+    const updatedRepository = await saveRepository(response.data, true);
     setRepositories(
       repositories.map(repo => repo.id === updatedRepository ? updatedRepository : repo)
     );
